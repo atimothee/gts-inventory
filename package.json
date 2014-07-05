@@ -1,0 +1,16 @@
+{
+  "name": "application-name",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "cradle": "^0.6.7",
+    "express": "^4.5.0",
+    "express-error-handler": "^0.5.4",
+    "express-method-override": "0.0.3",
+    "mongoose": "^3.8.12",
+    "morgan": "^1.1.1",
+    "nano": "^5.10.0",
+    "passport-local": "^1.0.0"
+  }
+}

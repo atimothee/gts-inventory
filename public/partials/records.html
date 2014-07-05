@@ -1,0 +1,26 @@
+<div class="panel-body">
+                    <!--if(records.size()!=0){-->
+                    <table id="records_table" class="table table-bordered">
+                        <thead>
+                        <th>Date</th>
+                        <th>Via</th>
+                        <th>Qty</th>
+                        <th>Comment</th>
+                        <th>Delete</th>
+                        </thead>
+                        <tbody>
+                        <ng-repeat>
+                        <tr>
+                            <td>{{record.date}}</td>
+                            <td>{{record.customer.name}}</td>
+                            <td>{{record.quantity}}<span class="badge">{{record.recordType.typeName}}</span></td>
+                            <td>{{record.comment}}</td>
+                            <td><form>
+                                <input type="submit" value="Delete" class="btn btn-xs btn-danger">
+                                </form></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    </ng-repeat>
+                </div>
