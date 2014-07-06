@@ -13,7 +13,7 @@
                <th>Delete</th>
            </thead>
            <tbody>
-            <tr>
+            <tr ng-repeat = "record in records">
                 <td>{{record.date}}</td>
                 <td>{{record.customer.name}}</td>
                 <td>{{record.quantity}}<span class="badge">{{record.recordType.typeName}}</span></td>

@@ -17,6 +17,13 @@ router.get('/records', function(req, res){
 	})
 
 })
+router.post('/records', function(req, res){
+	console.log('request response is'+req.body)
+	db.save(req.body, function(error, docs){
+		console.log('saved')
+	})
+
+})
 
 router.get('/records/:id', function(req, res){
 	db.findRecordById(req.params.id, function(error, docs){
@@ -42,6 +49,28 @@ router.get('/products', function(req, res){
 
 router.get('/products/:id', function(req, res){
 	db.findProductById(req.params.id, function(error, docs){
+		if(error){
+			res.send("error")
+		}else{
+			res.json(docs)
+		}
+	})
+
+})
+
+router.get('/customers', function(req, res){
+	db.findAllCustomers(function(error, docs){
+		if(error){
+			res.send("error")
+		}else{
+			res.json(docs)
+		}
+	})
+
+})
+
+router.get('/customers/:id', function(req, res){
+	db.findCustomerById(req.params.id, function(error, docs){
 		if(error){
 			res.send("error")
 		}else{

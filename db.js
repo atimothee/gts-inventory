@@ -65,3 +65,29 @@ exports.findProductById = function(id, callback) {
 		}
 	})
 };
+
+exports.findAllCustomers = function(callback){
+	db.view('customers/all',function(error, result) {
+		if( error ){
+			console.log('returned error is '+error)
+			callback(error)
+		}else{
+			console.log('returned result is '+result)
+			var docs = [];
+			result.forEach(function (row){
+				docs.push(row);
+			});
+			callback(null, docs);
+		}
+	});
+}
+
+exports.findCustomerById = function(id, callback) {
+	db.view('customers/all', {_id: id}, function(error, doc){
+		if(error){
+			callback(error)
+		}else{
+			callback(null, doc)
+		}
+	})
+};

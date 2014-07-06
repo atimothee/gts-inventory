@@ -3,28 +3,30 @@
                 <h3 class="panel-title">Add Record</h3>
             </div>
             <div class="panel-body">
+                <ul ng-repeat="product in products">
+                    <li>{{product.product_name}}</li>
+                </ul>   
                 <div class="form-group">
                     <label class="control-label" for="quantity">Quantity</label>
-                    <input class="form-control" placeholder="Quantity" id="quantity">
+                    <input class="form-control" placeholder="Quantity" id="quantity" ng-model="record.quantity">
                 </div>
 
                 <div class="form-group">
                     <label>Product</label>
-                    <select class="form-control" >
-                        <option value = "{{product._id}}">{{product.name}}</option>
+                    <select class="form-control" ng-model="record.product_id" ng-options="product._id as product.product_name for product in products">
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Type</label>
-                    <select class="form-control">
+                    <select class="form-control" ng-model="record.type">
                         <option>In</option>
                         <option>Out</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Customer</label>
-                    <select class="form-control">
-                        <option value = "{{customer._id}}" >{{customer.name}}</option>
+                    <select class="form-control" ng-model = "record.customer_id">
+                        <option ng-repeat = "customer in customers"value = "{{customer._id}}" >{{customer.customer_name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -38,6 +40,6 @@
                 </div>
 
 
-                <input type="submit" value="Create" class="btn btn-primary">
+                <a href="" type="submit" class="btn btn-primary" ng-click="createRecord()">Create</a>
             </div>
         </div>
