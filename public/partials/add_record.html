@@ -1,44 +1,43 @@
-<div class="col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Add Record</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label>Quantity</label>
-                        <input placeholder="Quantity">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Product</label>
-                        <select>
-                            <option value = "{{product._id}}">{{product.name}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Type</label>
-                        <select>
-                            <option>In</option>
-                            <option>Out</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Customer</label>
-                        <select class="form-control">
-                            <option value = "{{customer._id}}" >{{customer.name}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input class="form-control date-picker">
-                    </div>
-
-                    <div>
-                        <label>Comment</label>
-                        <textarea col="50"></textarea>
-                    </div>
-
-
-                    <input type="submit" value="Create" class="btn btn-primary">
-                </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Record</h3>
             </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label" for="quantity">Quantity</label>
+                    <input class="form-control" placeholder="Quantity" id="quantity">
+                </div>
+
+                <div class="form-group">
+                    <label>Product</label>
+                    <select class="form-control" >
+                        <option value = "{{product._id}}">{{product.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select class="form-control">
+                        <option>In</option>
+                        <option>Out</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select class="form-control">
+                        <option value = "{{customer._id}}" >{{customer.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input class="form-control datepicker">
+                </div>
+
+                <div class="form-group">
+                    <label>Comment</label>
+                    <textarea class="form-control" col="50"></textarea>
+                </div>
+
+
+                <input type="submit" value="Create" class="btn btn-primary">
+            </div>
+        </div>
