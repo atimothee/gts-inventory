@@ -13,4 +13,7 @@ angular.module('myApp.services', ['ngResource']).
   .factory('Product', function($resource){
   	return $resource('/products')
   })
+  .factory('Customer', function($resource){
+  	return $resource('/customers')
+  })
   ;

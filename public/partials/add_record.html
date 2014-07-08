@@ -3,9 +3,7 @@
                 <h3 class="panel-title">Add Record</h3>
             </div>
             <div class="panel-body">
-                <ul ng-repeat="product in products">
-                    <li>{{product.product_name}}</li>
-                </ul>   
+            <form>   
                 <div class="form-group">
                     <label class="control-label" for="quantity">Quantity</label>
                     <input class="form-control" placeholder="Quantity" id="quantity" ng-model="record.quantity">
@@ -31,15 +29,16 @@
                 </div>
                 <div class="form-group">
                     <label>Date</label>
-                    <input class="form-control datepicker">
+                    <input ng-model = "record.date" class="form-control datepicker">
                 </div>
 
                 <div class="form-group">
                     <label>Comment</label>
-                    <textarea class="form-control" col="50"></textarea>
+                    <textarea ng-model="record.comment" class="form-control" col="50"></textarea>
                 </div>
 
 
-                <a href="" type="submit" class="btn btn-primary" ng-click="createRecord()">Create</a>
+                <a href="" type="submit" class="btn btn-primary" ng-click="saveRecord()">Create</a>
+                </form>
             </div>
         </div>

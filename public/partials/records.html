@@ -15,8 +15,8 @@
            <tbody>
             <tr ng-repeat = "record in records">
                 <td>{{record.date}}</td>
-                <td>{{record.customer.name}}</td>
-                <td>{{record.quantity}}<span class="badge">{{record.recordType.typeName}}</span></td>
+                <td>{{record.customer_id}}</td>
+                <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
                 <td>{{record.comment}}</td>
                 <td><form>
                     <input type="submit" value="Delete" class="btn btn-xs btn-danger">

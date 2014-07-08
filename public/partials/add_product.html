@@ -1,21 +1,20 @@
-<div ng-show="" class="col-md-5">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Add Product</h3>
-        </div>
-        <div class="panel-body">
-
-            <div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Add Product</h3>
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
                 <label>Name</label>
-                <input>
+                <input ng-model="product.product_name" class="form-control">
             </div>
 
             <div>
                 <label>Model Number</label>
-                <input>
+                <input ng-model="product.model" class="form-control">
             </div>
 
-            <input type="submit" value="Create" class="btn btn-primary">
-
-
-        </div>
+            <a href=''class="btn btn-primary" ng-click="save(product)">Create</a>
+        </form>
+    </div>
+</div>

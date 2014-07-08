@@ -7,34 +7,30 @@ controller('AppCtrl', ['$scope', 'Record', function($scope) {
 	
 }])
 .controller('SetUpCtrl', [function($scope) {
-  	//$scope.addRecordPartialUrl = 'add_record.html'
   }])
-.controller('RecordsCtrl', ['$scope', 'Record', 'Product', function($scope, Record, Product) {
+.controller('RecordsCtrl', ['$scope', 'Record', 'Product','Customer', function($scope, Record, Product, Customer) {
 
   	$scope.records = Record.query()
     $scope.products = Product.query()
-    // $scope.products = [
-    //   {
-    //   _id:1,
-    //   product_name:"TS8943"
-    // },
-    // {
-    //   _id:3,
-    //   product_name:"YWRTOIR"
-    // }
+    $scope.customers = Customer.query()
 
-    //   ]
     $scope.record = {
-      product_id:'',
-      customer_id:'',
-      quantity:'',
-      comment:'',
-      date:''
+      _id:undefined,
+      product_id:undefined,
+      customer_id:undefined,
+      quantity:undefined,
+      comment:undefined,
+      date:undefined
     }
-  	$scope.createRecord = function(){
+  	$scope.saveRecord = function(){
   		Record.save($scope.record, function(data){
-  			$scope.record.quantity = ''
-  			$scope.record.product_id = ''
+        console.log(data)
+  			$scope.record.quantity = undefined
+  			$scope.record.product_id = undefined
+        $scope.record.comment = undefined
+        $scope.record.date = undefined
+        $scope.record.customer_id = undefined
+        $scope.record._id = undefined
 
   		})
   	}
