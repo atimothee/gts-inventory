@@ -8,9 +8,11 @@
     "express": "^4.5.0",
     "express-error-handler": "^0.5.4",
     "express-method-override": "0.0.3",
+    "lockit-couchdb-adapter": "^0.4.3",
     "mongoose": "^3.8.12",
     "morgan": "^1.1.1",
     "nano": "^5.10.0",
+    "passport": "^0.2.0",
     "passport-local": "^1.0.0"
   }
 }

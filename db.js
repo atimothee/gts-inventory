@@ -20,7 +20,7 @@ exports.findAllRecords = function(callback){
 			console.log('returned error is '+error)
 			callback(error)
 		}else{
-			console.log('returned result is '+result)
+			//console.log('returned result is '+result)
 			var docs = [];
 			result.forEach(function (row){
 				docs.push(row);

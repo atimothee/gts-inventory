@@ -1,0 +1,30 @@
+<div class="col-md-7">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">View Products</h3>
+        </div>
+        <div class="panel-body">
+         <table id="products_table" class="table table-bordered">
+             <thead>
+               <th>Name</th>
+               <th>Model Number</th>
+               <th>Delete</th>
+           </thead>
+           <tbody>
+            <tr ng-repeat = "product in products">
+                <td>{{product.product_name}}</td>
+                <td>{{product.model}}</td>
+                <td><form>
+                    <input type="submit" value="Delete" class="btn btn-xs btn-danger">
+                </form></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+</div>
+
+</div>
+<div class="col-md-5" ng-include src="'partials/add_product.html'">
+
+</div>

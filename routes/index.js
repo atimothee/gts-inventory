@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db')
+var sessions = require('../sessions')
 
 
 router.get('/', function(req, res) {
@@ -15,14 +16,6 @@ router.get('/records', function(req, res){
 			res.json(docs)
 		}
 	})
-
-})
-router.post('/records', function(req, res){
-	console.log('request response is'+req.body)
-	db.save(req.body, function(error, docs){
-		console.log('saved')
-	})
-
 })
 
 router.get('/records/:id', function(req, res){
@@ -33,7 +26,13 @@ router.get('/records/:id', function(req, res){
 			res.json(docs)
 		}
 	})
+})
 
+router.post('/records', function(req, res){
+	console.log('request response is'+req.body)
+	db.save(req.body, function(error, docs){
+		console.log('saved')
+	})
 })
 
 router.get('/products', function(req, res){
@@ -44,7 +43,6 @@ router.get('/products', function(req, res){
 			res.json(docs)
 		}
 	})
-
 })
 
 router.get('/products/:id', function(req, res){
@@ -55,7 +53,13 @@ router.get('/products/:id', function(req, res){
 			res.json(docs)
 		}
 	})
+})
 
+router.post('/products', function(req, res){
+	console.log('request response is'+req.body)
+	db.save(req.body, function(error, docs){
+		console.log('saved')
+	})
 })
 
 router.get('/customers', function(req, res){
@@ -66,7 +70,6 @@ router.get('/customers', function(req, res){
 			res.json(docs)
 		}
 	})
-
 })
 
 router.get('/customers/:id', function(req, res){
@@ -77,7 +80,29 @@ router.get('/customers/:id', function(req, res){
 			res.json(docs)
 		}
 	})
-
 })
+
+router.post('/customers', function(req, res){
+	console.log('request response is'+req.body)
+	db.save(req.body, function(error, docs){
+		console.log('saved')
+	})
+})
+
+router.post('/api/sessions', function(req, res){
+	sessions.login(req.body.username, req.body.password, function(err, cookie) {
+      if (err) {
+        res.send(401, JSON.stringify({error: true}));
+      }
+      else {
+        //var authSession = cookie.split(';')[0].split('=')[1];
+        //sessions.addLoggedInUser(req.body.username, cookie);
+        res.cookie(cookie);
+        //req.body['authSession'] = authSession;
+        res.send(req.body);
+      }
+    });
+  })
+
 
 module.exports = router;

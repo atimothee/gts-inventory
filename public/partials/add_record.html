@@ -2,16 +2,15 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Add Record</h3>
             </div>
-            <div class="panel-body">
-            <form>   
+            <div class="panel-body">   
                 <div class="form-group">
                     <label class="control-label" for="quantity">Quantity</label>
-                    <input class="form-control" placeholder="Quantity" id="quantity" ng-model="record.quantity">
+                    <input class="form-control" placeholder="Quantity" id="quantity" ng-model="record.quantity" required>
                 </div>
 
                 <div class="form-group">
                     <label>Product</label>
-                    <select class="form-control" ng-model="record.product_id" ng-options="product._id as product.product_name for product in products">
+                    <select class="form-control" required ng-model="record.product_id" ng-options="product._id as product.product_name for product in products">
                     </select>
                 </div>
                 <div class="form-group">
@@ -38,7 +37,7 @@
                 </div>
 
 
-                <a href="" type="submit" class="btn btn-primary" ng-click="saveRecord()">Create</a>
-                </form>
+                <a href="" type="submit" class="btn btn-primary" ng-click="saveRecord(record)">Create</a>
+                
             </div>
         </div>

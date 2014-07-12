@@ -16,4 +16,6 @@ angular.module('myApp.services', ['ngResource']).
   .factory('Customer', function($resource){
   	return $resource('/customers')
   })
-  ;
+  .factory('SessionService', function($resource) {
+  return $resource('/api/sessions');
+});
