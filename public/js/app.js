@@ -16,6 +16,7 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
   $routeProvider.when('/reports/transactions', {templateUrl: 'partials/transaction_reports.html', controller: 'TransactionReportsCtrl'});
   $routeProvider.when('/reports/stock', {templateUrl: 'partials/stock_reports.html', controller: 'StockReportsCtrl'});
   $routeProvider.otherwise({redirectTo: '/records'});
+  $routeProvider.when('/logout', {templateUrl: 'login.html', controller: 'LogoutCtrl'});
   $httpProvider.interceptors.push(function($rootScope, $location, $q) {
     return {
       'request': function(request) {

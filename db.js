@@ -6,6 +6,8 @@ var connection = new(cradle.Connection)('http://127.0.0.1', 5984, {
 
 var db = connection.database('gts');
 
+exports.database = db;
+
 exports.save = function(record, callback) {
 	record.created_at = new Date();
 	db.save(record, function(error, result) {

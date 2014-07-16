@@ -1,8 +1,23 @@
-var db = require('./db')
+var config = require('./config')
+  , nanoDb = require('nano')({url: 'http://127.0.0.1:5984/gts'})
 
-login = exports.login = function(username, password, callback) {
-      db.auth(username, password, function (err, body, headers) {
-        if (err) {
+  , loggedInUsers = {}
+
+  , addLoggedInUser = exports.addLoggedInUser = function(authSession, user) {
+      loggedInUsers[authSession] = user;
+    }
+
+  , getLoggedInUser = exports.getLoggedInUser = function(authSession) {
+      return loggedInUsers[authSession]
+    }
+
+  , removeLoggedInUser = exports.removeLoggedInUser = function(authSession) {
+      delete loggedInUsers[authSession]
+    }
+  
+  , login = exports.login = function(username, password, callback) {
+      nanoDb.auth(username, password, function (err, body, headers) {
+        if (err) { 
           return callback(err);
         }
         var cookie = headers['set-cookie'][0];

@@ -19,7 +19,7 @@
                 <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
                 <td>{{record.comment}}</td>
                 <td><form>
-                    <input type="submit" value="Delete" class="btn btn-xs btn-danger">
+                    <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
                 </form></td>
             </tr>
         </tbody>

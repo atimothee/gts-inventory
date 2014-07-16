@@ -14,9 +14,9 @@
             <tr ng-repeat = "customer in customers">
                 <td>{{customer.customer_name}}</td>
                 <td>{{customer.location}}</td>
-                <td><form>
-                    <input type="submit" value="Delete" class="btn btn-xs btn-danger">
-                </form></td>
+                <td>
+                    <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteCustomer(customer)">
+                </td>
             </tr>
         </tbody>
 
