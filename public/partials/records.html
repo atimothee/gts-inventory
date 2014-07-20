@@ -1,31 +1,35 @@
 <div class="col-md-7">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">View Records</h3>
-        </div>
-        <div class="panel-body">
-         <table id="records_table" class="table table-bordered">
-             <thead>
-               <th>Date</th>
-               <th>Via</th>
-               <th>Qty</th>
-               <th>Comment</th>
-               <th>Delete</th>
-           </thead>
-           <tbody>
-            <tr ng-repeat = "record in records">
-                <td>{{record.date}}</td>
-                <td>{{record.customer_id}}</td>
-                <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
-                <td>{{record.comment}}</td>
-                <td><form>
-                    <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
-                </form></td>
-            </tr>
-        </tbody>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">View Records</h3>
+    </div>
+    <div class="panel-body">
+     <table id="records_table" class="table table-bordered">
+       <thead>
+         <th>Date</th>
+         <th>Item Model Number</th>
+         <th>Via</th>
+         <th>Qty</th>
+         <th>Comment</th>
+         <th>Delete</th>
+       </thead>
+       <tbody>
+        <tr ng-repeat = "record in records">
+          <td>{{record.date}}</td>
+          <td>{{record.f_product_model_number}}</td>
+          <td>{{record.f_customer_name}}</td>
+          <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
+          <td>{{record.comment}}</td>
+          <td>
+            <form>
+              <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
+            </form>
+          </td>
+        </tr>
+      </tbody>
 
     </table>
-</div>
+  </div>
 </div>
 
 </div>

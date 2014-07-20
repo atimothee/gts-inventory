@@ -7,7 +7,8 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'myApp.controllers'
+  'myApp.controllers',
+  'ui.bootstrap'
   ]).
 config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
 	$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
@@ -16,11 +17,13 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
   $routeProvider.when('/reports/transactions', {templateUrl: 'partials/transaction_reports.html', controller: 'TransactionReportsCtrl'});
   $routeProvider.when('/reports/stock', {templateUrl: 'partials/stock_reports.html', controller: 'StockReportsCtrl'});
   $routeProvider.otherwise({redirectTo: '/records'});
-  $routeProvider.when('/logout', {templateUrl: 'login.html', controller: 'LogoutCtrl'});
+  $routeProvider.when('/logout', {templateUrl: 'partials/login.html', controller: 'LogoutCtrl'});
   $httpProvider.interceptors.push(function($rootScope, $location, $q) {
     return {
       'request': function(request) {
         // if we're not logged-in to the AngularJS app, redirect to login page
+        // console.log('root username '+$rootScope.username)
+        // console.log('root loggedIn '+$rootScope.loggedIn)
         $rootScope.loggedIn = $rootScope.loggedIn || $rootScope.username;
         if (!$rootScope.loggedIn && $location.path() != '/login') {
           $location.path('/login');       

@@ -1,5 +1,6 @@
 var config = require('./config')
-  , nanoDb = require('nano')({url: 'http://127.0.0.1:5984/gts'})
+var databaseUrl = config.couchdb.url
+var nanoDb = require('nano')({url: databaseUrl})
 
   , loggedInUsers = {}
 

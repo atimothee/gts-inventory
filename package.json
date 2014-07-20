@@ -11,6 +11,7 @@
     "express-method-override": "0.0.3",
     "express-params": "0.0.3",
     "express-user-couchdb": "^0.3.2",
+    "hjs": "0.0.6",
     "lockit-couchdb-adapter": "^0.4.3",
     "method-override": "^2.1.1",
     "mongoose": "^3.8.12",

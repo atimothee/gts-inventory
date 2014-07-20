@@ -15,8 +15,8 @@ var app = express();
 var server = require('http').createServer(app);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'public/partials'));
+app.set('view engine', 'hjs');
 
 app.use(favicon());
 app.use(logger('dev'));

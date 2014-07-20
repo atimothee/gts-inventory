@@ -13,9 +13,10 @@
            <tbody>
             <tr ng-repeat = "product in products">
                 <td>{{product.product_name}}</td>
-                <td>{{product.model}}</td>
+                <td>{{product.model_number}}</td>
                 <td>
-                    <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteProduct(product)"></td>
+                    <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteProduct(product)">
+                  </td>
             </tr>
         </tbody>
 
