@@ -33,11 +33,15 @@ exports.findAllRecords = function(callback){
 }
 
 exports.findRecordById = function(id, callback) {
-	db.view('records/all', {key:id}, function(error, doc){
-		if(error){
+	db.view('records/all', {key:id}, function(error, result){
+		if( error ){
 			callback(error)
 		}else{
-			callback(null, doc)
+			var doc
+			result.forEach(function (row){
+				doc = row
+			});
+			callback(null, doc);
 		}
 	})
 };
@@ -60,12 +64,15 @@ exports.findAllProducts = function(callback){
 
 exports.findProductById = function(id, callback) {
 
-	db.view('products/all', {key:id}, function(error, doc){
-		if(error){
+	db.view('products/all', {key:id}, function(error, result){
+		if( error ){
 			callback(error)
 		}else{
-			callback(null, doc.row)
-			console.log('product is '+JSON.stringify(doc))
+			var doc
+			result.forEach(function (row){
+				doc = row
+			});
+			callback(null, doc);
 		}
 	})
 };
@@ -87,12 +94,15 @@ exports.findAllCustomers = function(callback){
 }
 
 exports.findCustomerById = function(id, callback) {
-	db.view('customers/all', {key: id}, function(error, doc){
-		if(error){
+	db.view('customers/all', {key: id}, function(error, result){
+		if( error ){
 			callback(error)
 		}else{
-			callback(null, doc)
-			console.log('customer is '+JSON.stringify(doc))
+			var doc
+			result.forEach(function (row){
+				doc = row
+			});
+			callback(null, doc);
 		}
 	})
 };

@@ -5,7 +5,7 @@ var sessions = require('../sessions')
 
 router.get('/', function(req, res) {
 	var username = sessions.getLoggedInUser(req.cookies['AuthSession']);
-    res.render('index', {username: username});
+	res.render('index', {username: username});
 	//res.sendfile('./public/index.html');
 });
 
@@ -33,30 +33,18 @@ router.get('/records/:id', function(req, res){
 router.post('/records', function(req, res){
 	console.log('record post req body '+JSON.stringify(req.body))
 	db.findCustomerById(req.body.f_customer_id, function(err, doc){
-		console.log('customer '+JSON.stringify(doc)+' '+err)
 		req.body.f_customer_name = doc.customer_name;
+
 		db.findProductById(req.body.f_product_id, function(err, doc){
-			console.log('product '+JSON.stringify(doc)+' '+err)
 			req.body.f_product_name = doc.product_name;
 			req.body.f_product_model_number = doc.model_number;
 
-console.log('edited request body is'+JSON.stringify(req.body))
-	
-
+			db.save(req.body, function(error, docs){
+				console.log('saved '+'err '+error+' docs '+docs)
+				res.json(req.body)
+			})
 		});
-db.save(req.body, function(error, docs){
-		console.log('err '+error)
-		console.log('docs '+docs)
-		console.log('saved')
-		res.json(req.body)
-	})
-		
-
 	});
-	
-	
-	
-	
 })
 
 router.delete('/records', function(req, res){
