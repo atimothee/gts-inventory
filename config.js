@@ -1,18 +1,15 @@
-var config = {};
+var config = {
+	couchdb:{}
+};
 
-config.couchdb = {};
-config.twilio = {};
-
-//config.couchdb.url = 'https://couchserver:port/database';
-config.couchdb.url = 'http://127.0.0.1:5984/gts'
+config.couchdb.url = 'http://127.0.0.1:5984/gts';
+config.couchdb.baseUrl = 'http://127.0.0.1';
+config.couchdb.databaseName = 'gts';
+config.couchdb.port = 5984;
 //config.couchdb.secureUrl = 'https://username:password@couchserver:port/database';
 config.couchdb.secondsToInvalidateEvents = 120;
 config.couchdb.secondsToFlushVotes = 10;
 
-config.twilio.sid = 'ACxxx';
-config.twilio.key = 'yyy';
-config.twilio.disableSigCheck = false;
-
-config.cookiesecret = 'make-this-a-secret';
+config.cookiesecret = 'sdihfdskjh332r234';
 
 module.exports = config;

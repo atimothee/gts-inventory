@@ -1,10 +1,11 @@
 var cradle = require('cradle')
+var config = require('./config')
 
-
-var connection = new(cradle.Connection)('http://127.0.0.1', 5984, {
+var connection = new(cradle.Connection)(config.couchdb.baseUrl, config.couchdb.port, {
+	
 });
 
-var db = connection.database('gts');
+var db = connection.database(config.couchdb.databaseName);
 
 exports.database = db;
 

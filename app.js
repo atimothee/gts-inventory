@@ -5,10 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
+var config = require('./config')
 
 var routes = require('./routes/index');
-// var MongoStore = require('connect-mongo')(express)
-// var passport = require('./auth')
 
 var app = express();
 
@@ -21,32 +20,11 @@ app.set('view engine', 'hjs');
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded());
 app.use(methodOverride());
-app.use(cookieParser('my-cookie-secret'));
+app.use(cookieParser(config.cookiesecret));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.session({
-//     secret:'tymothee',
-//     store: new MongoStore({
-//         mongoose_connection:db
-//     })
-// }))
-// app.use(passport.initialize())
-// app.use(passport.session())
 app.use('/', routes);
 app.use('/login', routes)
-
-// app.param('_id', function(req,res, next, _id){
-//     console.log('_id is '+_id)
-//     req._id = _id
-//     next();
-// });
-
-// app.param('_rev', function(req,res, next, _rev){
-//     console.log('_rev is '+_rev)
-//     req._rev = _rev
-//     next();
-// });
 
 
 /// catch 404 and forward to error handler
