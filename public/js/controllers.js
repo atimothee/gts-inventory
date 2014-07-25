@@ -87,13 +87,13 @@ $scope.deleteRecord = function(record){
 
 
 $scope.today = function() {
-    $scope.record.date = new Date();
-  };
-  $scope.today();
+  $scope.record.date = new Date();
+};
+$scope.today();
 
-  $scope.clear = function () {
-    $scope.record.date = null;
-  };
+$scope.clear = function () {
+  $scope.record.date = null;
+};
 
   // Disable weekend selection
   $scope.disabled = function(date, mode) {
@@ -126,6 +126,25 @@ $scope.today = function() {
 
 }])
 
-.controller('StockReportsCtrl', [function($scope) {
+.controller('StockReportsCtrl',['$scope','Product', function($scope, Product) {
+
+
+  $scope.openStart = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.startOpened = true;
+  };
+
+  $scope.openEnd = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.endOpened = true;
+  };
+
+
+  $scope.products = Product.query();
+  $scope.getNumberIn = function(id){
+    return 'timo';
+  }
 
 }]);

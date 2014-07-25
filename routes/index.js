@@ -6,7 +6,13 @@ var sessions = require('../sessions')
 router.get('/', function(req, res) {
 	var username = sessions.getLoggedInUser(req.cookies['AuthSession']);
 	res.render('index', {username: username});
-	//res.sendfile('./public/index.html');
+});
+
+router.get('/compute/productsin',function(req, res){
+	req.query.startDate; req.query.endDate;
+	db.findProductQuantityIn([req.query.f_product_id, req.query.startDate], function(error, result){
+		res.json(result);
+	});
 });
 
 router.get('/records', function(req, res){
