@@ -32,3 +32,17 @@ var customers = function(doc){if(doc.customer_name){emit(doc._id, {_id:doc._id, 
     }
   }
 }
+
+{
+   "_id": "_design/products",
+   "_rev": "4-78e40407cb5ea9d405de574397ff442a",
+   "views": {
+       "all": {
+           "map": "function(doc){if(doc.product_name){emit(doc._id, {_id:doc._id, product_name:doc.product_name,model_number:doc.model_number});}}"
+       },
+       "quantityin": {
+           "map": "function(doc){if(doc.f_product_id&&doc.f_customer_id&&doc.type="in"){emit(doc._id, {quantity:doc.quantity});}}",
+           "reduce": "function(keys,values){return sum(values);}"
+       }
+   }
+}

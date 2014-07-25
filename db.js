@@ -2,7 +2,7 @@ var cradle = require('cradle')
 var config = require('./config')
 
 var connection = new(cradle.Connection)(config.couchdb.baseUrl, config.couchdb.port, {
-	
+	auth:{"username": config.couchdb.username,"password":config.couchdb.password}
 });
 
 var db = connection.database(config.couchdb.databaseName);
@@ -96,6 +96,20 @@ exports.findAllCustomers = function(callback){
 
 exports.findCustomerById = function(id, callback) {
 	db.view('customers/all', {key: id}, function(error, result){
+		if( error ){
+			callback(error)
+		}else{
+			var doc
+			result.forEach(function (row){
+				doc = row
+			});
+			callback(null, doc);
+		}
+	})
+};
+
+exports.findProductQuantityIn = function(keyArray, callback) {
+	db.view('products/quantityin', {key:keyArray}, function(error, result){
 		if( error ){
 			callback(error)
 		}else{

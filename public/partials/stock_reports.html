@@ -1,51 +1,62 @@
 <div class="col-md-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">View Stock Reports</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="well">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Stock Reports</h3>
+        </div>
+        <div class="panel-body">
+            <div class="well">
 
-                        <form class="form-inline">
-                        <div class="form-group">
-                            <label>Product</label>
-                            <select>
-                                <option></option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>From</label>
-                            <input class="datepicker">
-                        </div>
-                        <div class="form-group">
-                            <label>To</label>
-                            <input class="datepicker">
-                        </div>
-
-                        <input type="submit" value="Load" class="btn btn-primary">
-                        </form>
-
-                        </div>
-                    <table id="table" class="table table-bordered">
-                        <thead>
-                        <th>Product</th>
-                        <th>In</th>
-                        <th>Out</th>
-                        <th>Left</th>
-                        </thead>
-                        <tbody>
-                        
-                        <tr>
-                            <td>{{product.name}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        
-                        </tbody>
-
-                    </table>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>Product</label>
+                        <select>
+                            <option value="0">All</option>
+                            <option ng-repeat="p in products" value="{{p._id}}">{{p.product_name}}</option>
+                        </select>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label>From</label>
+                        <p class="input-group">
+                    <input ng-model = "startDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                    <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+              </p>
+                    </div>
+                    <div class="form-group">
+                        <label>To</label>
+                        <p class="input-group">
+                    <input ng-model = "endDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="endOpened" ng-required="true" close-text="Close">
+                    <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+              </p>
+                    </div>
+
+                    <input type="submit" value="Load" class="btn btn-primary">
+                </form>
+
             </div>
+            <table id="table" class="table table-bordered">
+                <thead>
+                    <th>Product</th>
+                    <th>In</th>
+                    <th>Out</th>
+                    <th>Left</th>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat="p in products">
+                        <td>{{p.product_name}}</td>
+                        <td>{{getNumberIn(p._id)}}</td>
+                        <td>{{getNumberOut(p._id)}}</td>
+                        <td>{{getNumberLeft(p._id)}}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
