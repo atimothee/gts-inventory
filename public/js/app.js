@@ -25,7 +25,7 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
         // if we're not logged-in to the AngularJS app, redirect to login page
         // console.log('root username '+$rootScope.username)
         // console.log('root loggedIn '+$rootScope.loggedIn)
-        $rootScope.loggedIn = true;//$rootScope.loggedIn || $rootScope.username;
+        $rootScope.loggedIn = $rootScope.loggedIn || $rootScope.username;
         if (!$rootScope.loggedIn && $location.path() != '/login') {
           $location.path('/login');       
         }
