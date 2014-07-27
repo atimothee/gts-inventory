@@ -8,10 +8,37 @@ router.get('/', function(req, res) {
 	res.render('index', {username: username});
 });
 
-router.get('/compute/productsin',function(req, res){
-	req.query.startDate; req.query.endDate;
-	db.findProductQuantityIn([req.query.f_product_id, req.query.startDate], function(error, result){
+router.get('/compute/productsin/:product_id/:startDate/:endDate',function(req, res){
+	var opts = {
+				startkey: [req.params.product_id, req.params.startDate],
+				endkey: [req.params.product_id, req.params.endDate]
+			}
+	db.findProductQuantityIn(opts, function(error, result){
 		res.json(result);
+	});
+});
+
+router.get('/stock/:startDate/:endDate',function(req, res){
+	var results = [];
+	db.findAllProducts(function(error, docs){
+		var products = docs;
+		var counter = docs.length;
+		products.forEach(function(p){
+			var opts = {
+				startkey: [p._id, req.params.startDate],
+				endkey: [p._id, req.params.endDate]
+			}
+			db.findProductQuantityIn(opts, function(error, qty){
+				counter--;
+				results.push({"product_name":p.product_name, "qtyIn": qty});
+				console.log('pushed '+p.product_name+" "+qty);
+				console.log(JSON.stringify(results));
+				if(counter==0){
+					res.json(results);
+				}
+			});
+		});
+		
 	});
 });
 
@@ -37,7 +64,9 @@ router.get('/records/:id', function(req, res){
 })
 
 router.post('/records', function(req, res){
-	console.log('record post req body '+JSON.stringify(req.body))
+	console.log('record post req body '+JSON.stringify(req.body));
+	var qty = req.body.quantity;
+	req.body.quantity = new Number(qty);
 	db.findCustomerById(req.body.f_customer_id, function(err, doc){
 		req.body.f_customer_name = doc.customer_name;
 

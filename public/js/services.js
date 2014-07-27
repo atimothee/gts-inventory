@@ -18,4 +18,12 @@ angular.module('myApp.services', ['ngResource']).
   })
   .factory('SessionService', function($resource) {
   return $resource('/api/sessions');
-});
+})
+  .factory('ComputeQuantityInService', function($resource) {
+    return $resource('/compute/productsin/:product_id/:startDate/:endDate');
+})
+  .factory('StockService', function($resource) {
+    return $resource('/stock/:startDate/:endDate');
+})
+
+  ;

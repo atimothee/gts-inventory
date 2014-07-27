@@ -23,7 +23,7 @@ exports.findAllRecords = function(callback){
 			console.log('returned error is '+error)
 			callback(error)
 		}else{
-			console.log('returned result is '+result)
+			//console.log('returned result is '+result)
 			var docs = [];
 			result.forEach(function (row){
 				docs.push(row);
@@ -108,8 +108,8 @@ exports.findCustomerById = function(id, callback) {
 	})
 };
 
-exports.findProductQuantityIn = function(keyArray, callback) {
-	db.view('products/quantityin', {key:keyArray}, function(error, result){
+exports.findProductQuantityIn = function(opts, callback) {
+	db.view('products/quantityin', opts, function(error, result){
 		if( error ){
 			callback(error)
 		}else{

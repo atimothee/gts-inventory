@@ -68,20 +68,20 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) 
   "date":'',
   "comment":''
 }
+$scope.record.quantity = new Number();
 $scope.records = Record.query()
 $scope.products = Product.query()
 $scope.customers = Customer.query()
 
 $scope.saveRecord = function(){
   Record.save($scope.record, function(data){
-    $route.reload()
-
+    $route.reload();
   })
 }
 
 $scope.deleteRecord = function(record){
   Record.delete(record, function(data){
-    $route.reload()
+    $route.reload();
   })
 }
 
@@ -126,8 +126,15 @@ $scope.clear = function () {
 
 }])
 
-.controller('StockReportsCtrl',['$scope','Product', function($scope, Product) {
+.controller('StockReportsCtrl',['$scope','$route', 'Product', 'ComputeQuantityInService', 'StockService', function($scope, $route, Product, ComputeQuantityInService, StockService) {
+   $scope.startDate = new Date();
+   $scope.endDate = new Date();
+   $scope.format = 'dd/MM/yyyy';
+  $scope.products = [];
 
+  $scope.load = function(){
+    $scope.products = StockService.query({startDate:$scope.startDate.toJSON(), endDate:$scope.endDate.toJSON()});
+  }
 
   $scope.openStart = function($event) {
     $event.preventDefault();
@@ -142,9 +149,8 @@ $scope.clear = function () {
   };
 
 
-  $scope.products = Product.query();
-  $scope.getNumberIn = function(id){
-    return 'timo';
-  }
+  
+  
+  
 
 }]);

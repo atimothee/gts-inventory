@@ -24,7 +24,7 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
         // if we're not logged-in to the AngularJS app, redirect to login page
         // console.log('root username '+$rootScope.username)
         // console.log('root loggedIn '+$rootScope.loggedIn)
-        $rootScope.loggedIn = $rootScope.loggedIn || $rootScope.username;
+        $rootScope.loggedIn = true;//$rootScope.loggedIn || $rootScope.username;
         if (!$rootScope.loggedIn && $location.path() != '/login') {
           $location.path('/login');       
         }
@@ -33,6 +33,7 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
       'responseError': function(rejection) {
         // if we're not logged-in to the web service, redirect to login page
         if (rejection.status === 401 && $location.path() != '/login') {
+          console.log('angular rejected request');
           $rootScope.loggedIn = false;
           $location.path('/login');
         }

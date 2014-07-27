@@ -7,18 +7,11 @@
             <div class="well">
 
                 <form class="form-inline">
-                    <div class="form-group">
-                        <label>Product</label>
-                        <select>
-                            <option value="0">All</option>
-                            <option ng-repeat="p in products" value="{{p._id}}">{{p.product_name}}</option>
-                        </select>
-                    </div>
 
                     <div class="form-group">
                         <label>From</label>
                         <p class="input-group">
-                    <input ng-model = "startDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                    <input ng-model = "startDate" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
                     <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -34,7 +27,7 @@
               </p>
                     </div>
 
-                    <input type="submit" value="Load" class="btn btn-primary">
+                    <input type="submit" value="Load" class="btn btn-primary" ng-click="load()">
                 </form>
 
             </div>
@@ -49,9 +42,9 @@
 
                     <tr ng-repeat="p in products">
                         <td>{{p.product_name}}</td>
-                        <td>{{getNumberIn(p._id)}}</td>
-                        <td>{{getNumberOut(p._id)}}</td>
-                        <td>{{getNumberLeft(p._id)}}</td>
+                        <td>{{p.qtyIn}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
 
                 </tbody>
