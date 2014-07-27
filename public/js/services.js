@@ -10,6 +10,9 @@ angular.module('myApp.services', ['ngResource']).
   .factory('Record', function($resource){
   	return $resource('/records')
   })
+  .factory('RecordFilter', function($resource){
+    return $resource('/records/:product_id/:customer_id/:type/:startDate/:endDate')
+  })
   .factory('Product', function($resource){
   	return $resource('/products')
   })

@@ -38,14 +38,13 @@ router.get('/stock/:startDate/:endDate',function(req, res){
 				},
 				"product_name":p.product_name
 			}
+
 			db.findProductQuantityIn(opts1.options, function(error, qtyIn){
-				console.log('options '+JSON.stringify(opts1.options)+' qtyIn'+qtyIn)
+
 				db.findProductQuantityOut(opts2.options, function(error, qtyOut){
 					counter--;
-					console.log('options '+JSON.stringify(opts2.options)+' qtyOut'+qtyOut)
 					results.push({"product_name":opts2.product_name, "qtyIn":qtyIn, "qtyOut":qtyOut});
 					if(counter==0){
-						console.log('response is '+JSON.stringify(results))
 						res.json(results);
 					}
 				});		
@@ -61,6 +60,43 @@ router.get('/records', function(req, res){
 		if(error){
 			res.send("error")
 		}else{
+			res.json(docs)
+		}
+	})
+})
+
+router.get('/records/:product_id/:customer_id/:type/:startDate/:endDate', function(req, res){
+	var params = req.params;
+	params.endtype = req.params.type;
+	params.endproduct_id = req.params.product_id;
+	params.endcustomer_id = req.params.customer_id;
+	if(req.params.type=='All'){
+		params.type = null;
+		params.endtype = {};
+	}
+
+	if(req.params.product_id=='All'){
+		params.product_id = null;
+		params.endproduct_id = {};
+	}
+
+	if(req.params.customer_id=='All'){
+		req.params.customer_id = null;
+		req.params.endcustomer_id = {};
+	}
+
+	console.log(JSON.stringify(params));
+
+	var opts = {
+		startkey: [params.product_id, params.customer_id, params.type, params.startDate],
+		endkey: [params.endproduct_id, params.endcustomer_id, params.endtype, params.endDate]
+	}
+	console.log('options '+JSON.stringify(opts))
+	db.findFilteredRecords(opts, function(error, docs){
+		if(error){
+			res.send("error")
+		}else{
+			console.log('response is '+JSON.stringify(docs));
 			res.json(docs)
 		}
 	})

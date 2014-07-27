@@ -8,7 +8,8 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.controllers',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngTable'
   ]).
 config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
 	$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});

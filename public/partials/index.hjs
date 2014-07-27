@@ -11,39 +11,47 @@
 <body ng-init="username='{{username}}'">
   <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Grace Inventory</a>
-        </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Grace Inventory</a>
+      </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li ng-show="loggedIn" ng-class="recordsActive"><a href="#/records" >Records</a></li>
-                <li ng-show="loggedIn" ng-class="setupActive"><a href="#/setup">Set Up</a></li>
-                <li ng-show="loggedIn" ng-class="reportsActive"><a href="">Reports</a></li>
-                <li ng-show="loggedIn"><a href="#/logout">Logout</a></li>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ng-show="loggedIn" ng-class="recordsActive"><a href="#/records" >Records</a></li>
+          <li ng-show="loggedIn" ng-class="setupActive"><a href="#/setup">Set Up</a></li>
+          <li ng-show="loggedIn" ng-class="reportsActive" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#/reports/stock">Stock</a></li>
+              <li><a href="#">Transactions</a></li>
             </ul>
-        </div>
+          </li>
+          <li ng-show="loggedIn"><a href="#/logout">Logout</a></li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
   <div ng-view></div>
-  </div>
+</div>
 
 
 
-  <script src="/lib/angular/angular.js"></script>
-  <script src="/lib/angular/angular-resource.min.js"></script>
-  <script src="/lib/angular/angular-cookies.js"></script>
-  <script src="/lib/angular/angular-route.js"></script>
-  <script src="/lib/jquery-1.9.0.min.js"></script>
-  <script src="/lib/bootstrap.min.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/services.js"></script>
-  <script src="/js/controllers.js"></script>
-  <script src="/js/filters.js"></script>
-  <script src="/js/directives.js"></script>
-  <script src="/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
-    
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular/angular-resource.min.js"></script>
+<script src="/lib/angular/angular-cookies.js"></script>
+<script src="/lib/angular/angular-route.js"></script>
+<script src="/lib/jquery-1.11.0.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<script src="/lib/ng-table.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/services.js"></script>
+<script src="/js/controllers.js"></script>
+<script src="/js/filters.js"></script>
+<script src="/js/directives.js"></script>
+<script src="/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+
 
 
 </body>

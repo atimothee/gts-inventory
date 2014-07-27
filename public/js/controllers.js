@@ -56,8 +56,14 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) 
 
   
 }])
-.controller('RecordsCtrl', ['$scope','$location','$route', 'Record', 'Product','Customer', function($scope, $location, $route, Record, Product, Customer) {
-
+.controller('RecordsCtrl', ['$scope','$location','$route', 'Record', 'Product','Customer','RecordFilter', function($scope, $location, $route, Record, Product, Customer, RecordFilter) {
+$scope.filter = {
+  type:'',
+  "product_id":'',
+  "customer_id":'',
+  "startDate":'',
+  "endDate":''
+}
  $scope.record = {
   "quantity":'',
   "f_customer_id":'',
@@ -95,16 +101,6 @@ $scope.clear = function () {
   $scope.record.date = null;
 };
 
-  // Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-
   $scope.open = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -119,6 +115,24 @@ $scope.clear = function () {
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = 'dd/MM/yyyy';
+
+  $scope.filterRecords = function(){
+    $scope.records = RecordFilter.query({product_id:$scope.filter.product_id, customer_id:$scope.filter.customer_id, type:$scope.filter.type
+      ,startDate: $scope.filter.startDate.toJSON(), endDate:$scope.filter.endDate.toJSON()
+  });
+  }
+
+  $scope.openFilterStart = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.startOpened = true;
+  };
+
+  $scope.openFilterEnd = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.endOpened = true;
+  };
 
 }])
 

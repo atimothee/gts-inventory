@@ -137,3 +137,19 @@ exports.findProductQuantityOut = function(opts, callback) {
 		}
 	})
 };
+
+exports.findFilteredRecords = function(opts, callback){
+	db.view('records/all', opts, function(error, result) {
+		if( error ){
+			console.log('returned error is '+error)
+			callback(error)
+		}else{
+			//console.log('returned result is '+result)
+			var docs = [];
+			result.forEach(function (row){
+				docs.push(row);
+			});
+			callback(null, docs);
+		}
+	});
+}
