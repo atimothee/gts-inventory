@@ -36,15 +36,13 @@
                     <th>Product</th>
                     <th>In</th>
                     <th>Out</th>
-                    <th>Left</th>
                 </thead>
                 <tbody>
 
                     <tr ng-repeat="p in products">
                         <td>{{p.product_name}}</td>
                         <td>{{p.qtyIn}}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{p.qtyOut}}</td>
                     </tr>
 
                 </tbody>

@@ -9,6 +9,10 @@
        "quantityin": {
            "map": "function(doc){if(doc.f_product_id&&doc.f_customer_id&&doc.type=='In'){emit([doc.f_product_id, doc.date],doc.quantity);}}",
            "reduce": "function(keys,values){return sum(values);}"
+       },
+       "quantityout": {
+           "map": "function(doc){if(doc.f_product_id&&doc.f_customer_id&&doc.type=='Out'){emit([doc.f_product_id, doc.date],doc.quantity);}}",
+           "reduce": "function(keys,values){return sum(values);}"
        }
    }
 }

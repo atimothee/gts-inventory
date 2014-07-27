@@ -121,3 +121,19 @@ exports.findProductQuantityIn = function(opts, callback) {
 		}
 	})
 };
+
+exports.findProductQuantityOut = function(opts, callback) {
+	db.view('products/quantityout', opts, function(error, result){
+		if( error ){
+			callback(error)
+			console.log('error is '+error)
+		}else{
+			var doc
+			result.forEach(function (row){
+				doc = row
+				console.log("row is "+row);
+			});
+			callback(null, doc);
+		}
+	})
+};
