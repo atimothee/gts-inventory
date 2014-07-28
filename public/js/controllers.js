@@ -56,7 +56,7 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) 
 
   
 }])
-.controller('RecordsCtrl', ['$scope','$location','$route', 'Record', 'Product','Customer','RecordFilter', function($scope, $location, $route, Record, Product, Customer, RecordFilter) {
+.controller('RecordsCtrl', ['$scope','$location','$route', 'Record', 'Product','Customer','RecordFilter','$modal', function($scope, $location, $route, Record, Product, Customer, RecordFilter, $modal) {
 $scope.filter = {
   type:'',
   "product_id":'',
@@ -75,9 +75,13 @@ $scope.filter = {
   "comment":''
 }
 $scope.record.quantity = new Number();
-$scope.records = Record.query()
-$scope.products = Product.query()
-$scope.customers = Customer.query()
+$scope.records = Record.query();
+$scope.products = Product.query();
+$scope.customers = Customer.query();
+
+$scope.addRecord = function () {
+
+  }
 
 $scope.saveRecord = function(){
   Record.save($scope.record, function(data){

@@ -1,11 +1,21 @@
-<div class="col-md-12">
+<div class="col-sm-2">
+      <button class="btn btn-success btn-block" data-toggle="modal" data-target="#addRecordModal">Add Record</button>
+      </div><br>
+      <div class="row">
+        <div class="col-md-2"></div>
+<div class="col-lg-8">
+  
   <div class="panel panel-default">
+
     <div class="panel-heading">
       <h3 class="panel-title">View Records</h3>
+
     </div>
+    
     <div class="panel-body">
+      
       <div class="well" ng-show="products.length!=0">
-        <!-- <a href="#" class="btn btn-success pull-left">Add</a> -->
+        
         <form class="form form-inline" role="form">
           <div class="form-group input-group-sm">
             <label for="type">Type</label>
@@ -80,6 +90,18 @@
   </div>
 
 </div>
-<div class="col-md-5" ng-include src="'partials/add_record.html'">
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="addRecordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <div ng-include src="'partials/add_record.html'"></div>
+      </div>
+    </div>
+  </div>
 </div>
