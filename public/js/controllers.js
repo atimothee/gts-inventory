@@ -57,53 +57,54 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) 
   
 }])
 .controller('RecordsCtrl', ['$scope','$location','$route', 'Record', 'Product','Customer','RecordFilter','$modal', function($scope, $location, $route, Record, Product, Customer, RecordFilter, $modal) {
-$scope.filter = {
-  type:'',
-  "product_id":'',
-  "customer_id":'',
-  "startDate":'',
-  "endDate":''
-}
- $scope.record = {
-  "quantity":'',
-  "f_customer_id":'',
-  "f_customer_name":'',
-  "f_product_id":'',
-  "f_product_model_number":'',
-  "f_product_name":'',
-  "date":'',
-  "comment":''
-}
-$scope.record.quantity = new Number();
-$scope.records = Record.query();
-$scope.products = Product.query();
-$scope.customers = Customer.query();
+  $scope.recordsActive = 'active';
+  $scope.filter = {
+    type:'',
+    "product_id":'',
+    "customer_id":'',
+    "startDate":'',
+    "endDate":''
+  }
+  $scope.record = {
+    "quantity":'',
+    "f_customer_id":'',
+    "f_customer_name":'',
+    "f_product_id":'',
+    "f_product_model_number":'',
+    "f_product_name":'',
+    "date":'',
+    "comment":''
+  }
+  $scope.record.quantity = new Number();
+  $scope.records = Record.query();
+  $scope.products = Product.query();
+  $scope.customers = Customer.query();
 
-$scope.addRecord = function () {
+  $scope.addRecord = function () {
 
   }
 
-$scope.saveRecord = function(){
-  Record.save($scope.record, function(data){
-    $route.reload();
-  })
-}
+  $scope.saveRecord = function(){
+    Record.save($scope.record, function(data){
+      $route.reload();
+    })
+  }
 
-$scope.deleteRecord = function(record){
-  Record.delete(record, function(data){
-    $route.reload();
-  })
-}
+  $scope.deleteRecord = function(record){
+    Record.delete(record, function(data){
+      $route.reload();
+    })
+  }
 
 
-$scope.today = function() {
-  $scope.record.date = new Date();
-};
-$scope.today();
+  $scope.today = function() {
+    $scope.record.date = new Date();
+  };
+  $scope.today();
 
-$scope.clear = function () {
-  $scope.record.date = null;
-};
+  $scope.clear = function () {
+    $scope.record.date = null;
+  };
 
   $scope.open = function($event) {
     $event.preventDefault();
@@ -123,7 +124,7 @@ $scope.clear = function () {
   $scope.filterRecords = function(){
     $scope.records = RecordFilter.query({product_id:$scope.filter.product_id, customer_id:$scope.filter.customer_id, type:$scope.filter.type
       ,startDate: $scope.filter.startDate.toJSON(), endDate:$scope.filter.endDate.toJSON()
-  });
+    });
   }
 
   $scope.openFilterStart = function($event) {
@@ -144,31 +145,33 @@ $scope.clear = function () {
 
 }])
 
-.controller('StockReportsCtrl',['$scope','$route', 'Product', 'ComputeQuantityInService', 'StockService', function($scope, $route, Product, ComputeQuantityInService, StockService) {
-   $scope.startDate = new Date();
-   $scope.endDate = new Date();
-   $scope.format = 'dd/MM/yyyy';
-  $scope.products = [];
+.controller('StockReportsCtrl',['$scope','$route', '$location', 'Product', 'ComputeQuantityInService', 'StockService', function($scope, $route, $location, Product, ComputeQuantityInService, StockService) {
+ $scope.startDate = new Date();
+ $scope.endDate = new Date();
+ $scope.format = 'dd/MM/yyyy';
+ $scope.products = [];
 
-  $scope.load = function(){
-    $scope.products = StockService.query({startDate:$scope.startDate.toJSON(), endDate:$scope.endDate.toJSON()});
-  }
+ $scope.load = function(){
+  $scope.products = StockService.query({startDate:$scope.startDate.toJSON(), endDate:$scope.endDate.toJSON()});
+}
 
-  $scope.openStart = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.startOpened = true;
-  };
+$scope.openStart = function($event) {
+  $event.preventDefault();
+  $event.stopPropagation();
+  $scope.startOpened = true;
+};
 
-  $scope.openEnd = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.endOpened = true;
-  };
+$scope.openEnd = function($event) {
+  $event.preventDefault();
+  $event.stopPropagation();
+  $scope.endOpened = true;
+};
 
 
-  
-  
-  
+$scope.print = function(){
+$location.path() = '/newValue';
+}
+
+
 
 }]);

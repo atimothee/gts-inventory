@@ -37,7 +37,7 @@ router.get('/print/stock/:startDate/:endDate', function(req, res){
 					counter--;
 					results.push({"product_name":opts2.product_name, "qtyIn":qtyIn, "qtyOut":qtyOut});
 					if(counter==0){
-						res.render('print_stock_reports', results);
+						res.render('print_stock_reports', {products:results, printStartDate:req.params.startDate, printEndDate:req.params.endDate});
 					}
 				});		
 			});

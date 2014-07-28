@@ -32,6 +32,10 @@
                 </form>
 
             </div>
+            <div>
+                <p ng-show="products.length==0" class="text-danger">No range selected!</p>
+            </div>
+            <div ng-show="products.length!=0" >
             <table id="table" ng-table class="table table-bordered">
                 <thead>
                     <th>Product</th>
@@ -49,7 +53,8 @@
                 </tbody>
 
             </table>
-            <button class="btn btn-succes">Print</button>
+            </div>
+            <a href= "/print/stock/{{startDate.toJSON()}}/{{endDate.toJSON()}}" ng-show="products.length!=0" class="btn btn-success" ng-click="print">Print</a>
         </div>
     </div>
 </div>

@@ -17,14 +17,10 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li ng-show="loggedIn" ng-class="recordsActive"><a href="#/records" >Records</a></li>
+          <li ng-show="loggedIn" class="{{recordsActive}}" ng-class="recordsActive"><a href="#/records" >Records</a></li>
           <li ng-show="loggedIn" ng-class="setupActive"><a href="#/setup">Set Up</a></li>
-          <li ng-show="loggedIn" ng-class="reportsActive" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#/reports/stock">Stock</a></li>
-              <li><a href="#">Transactions</a></li>
-            </ul>
+          <li ng-show="loggedIn" ng-class="reportsActive">
+            <a href="#reports/stock" >Reports</a>
           </li>
           <li ng-show="loggedIn"><a href="#/logout">Logout</a></li>
         </ul>

@@ -1,27 +1,31 @@
 <div class="col-md-7">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">View Customers</h3>
-        </div>
-        <div class="panel-body">
-         <table id="customers_table" class="table table-bordered">
-             <thead>
-               <th>Name</th>
-               <th>Location</th>
-               <th>Delete</th>
-           </thead>
-           <tbody>
-            <tr ng-repeat = "customer in customers">
-                <td>{{customer.customer_name}}</td>
-                <td>{{customer.location}}</td>
-                <td>
-                    <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteCustomer(customer)">
-                </td>
-            </tr>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">View Customers</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <p ng-show="customers.length==0" class="text-danger">No customers to show!</p>
+      </div>
+      <div ng-show="customers.length!=0">
+       <table id="customers_table" class="table table-bordered">
+         <thead>
+           <th>Name</th>
+           <th>Location</th>
+           <th>Delete</th>
+         </thead>
+         <tbody>
+          <tr ng-repeat = "customer in customers">
+            <td>{{customer.customer_name}}</td>
+            <td>{{customer.location}}</td>
+            <td>
+              <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteCustomer(customer)">
+            </td>
+          </tr>
         </tbody>
-
-    </table>
-</div>
+      </table>
+    </div>
+  </div>
 </div>
 
 </div>

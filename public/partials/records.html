@@ -1,28 +1,28 @@
 <div class="col-sm-2">
-      <button class="btn btn-success btn-block" data-toggle="modal" data-target="#addRecordModal">Add Record</button>
-      </div><br>
-      <div class="row">
-        <div class="col-md-2"></div>
-<div class="col-lg-8">
-  
-  <div class="panel panel-default">
-
-    <div class="panel-heading">
-      <h3 class="panel-title">View Records</h3>
-
-    </div>
+  <button class="btn btn-success btn-block" data-toggle="modal" data-target="#addRecordModal">Add Record</button>
+</div><br>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-lg-8">
     
-    <div class="panel-body">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">View Records</h3>
+
+      </div>
       
-      <div class="well" ng-show="products.length!=0">
+      <div class="panel-body">
         
-        <form class="form form-inline" role="form">
-          <div class="form-group input-group-sm">
-            <label for="type">Type</label>
-            <select ng-model="filter.type" class="form-control" id="type">
-              <option selected>All</option>
-              <option>In</option>
-              <option>Out</option>
+        <div class="well" ng-show="products.length!=0">
+          
+          <form class="form form-inline" role="form">
+            <div class="form-group input-group-sm">
+              <label for="type">Type</label>
+              <select ng-model="filter.type" class="form-control" id="type">
+                <option selected>All</option>
+                <option>In</option>
+                <option>Out</option>
               </select>
             </div>
             <div class="form-group input-group-sm">
@@ -58,34 +58,38 @@
                 </span>
               </p>
             </div>
-              <button class="btn btn-info" ng-click="filterRecords()">Filter</button>
+            <button class="btn btn-info" ng-click="filterRecords()">Filter</button>
           </form>
         </div>
-        <table id="records_table" ng-table class="table table-bordered">
-         <thead>
-           <th>Date</th>
-           <th>Item Model Number</th>
-           <th>Via</th>
-           <th>Qty</th>
-           <th>Comment</th>
-           <th>Delete</th>
-         </thead>
-         <tbody>
-          <tr ng-repeat = "record in records">
-            <td>{{record.date}}</td>
-            <td>{{record.f_product_model_number}}</td>
-            <td>{{record.f_customer_name}}</td>
-            <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
-            <td>{{record.comment}}</td>
-            <td>
-              <form>
-                <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
-              </form>
-            </td>
-          </tr>
-        </tbody>
-
-      </table>
+        <div>
+          <p ng-show="records.length==0" class="text-danger">No records to show!</p>
+        </div>
+        <div ng-show="records.length!=0">
+          <table id="records_table" ng-table class="table table-bordered">
+           <thead>
+             <th>Date</th>
+             <th>Item Model Number</th>
+             <th>Via</th>
+             <th>Qty</th>
+             <th>Comment</th>
+             <th>Delete</th>
+           </thead>
+           <tbody>
+            <tr ng-repeat = "record in records">
+              <td>{{record.date}}</td>
+              <td>{{record.f_product_model_number}}</td>
+              <td>{{record.f_customer_name}}</td>
+              <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
+              <td>{{record.comment}}</td>
+              <td>
+                <form>
+                  <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
