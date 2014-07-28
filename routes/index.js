@@ -8,6 +8,46 @@ router.get('/', function(req, res) {
 	res.render('index', {username: username});
 });
 
+router.get('/print/stock/:startDate/:endDate', function(req, res){
+	console.log('request log '+JSON.stringify(req.params))
+
+	var results = [];
+	db.findAllProducts(function(error, docs){
+		var products = docs;
+		var counter = docs.length;
+		products.forEach(function(p){
+
+			var opts1 = {
+				"options":{
+					startkey: [p._id, req.params.startDate],
+					endkey: [p._id, req.params.endDate]
+				}
+			}
+			var opts2 = {
+				"options":{
+					startkey: [p._id, req.params.startDate],
+					endkey: [p._id, req.params.endDate]
+				},
+				"product_name":p.product_name
+			}
+
+			db.findProductQuantityIn(opts1.options, function(error, qtyIn){
+
+				db.findProductQuantityOut(opts2.options, function(error, qtyOut){
+					counter--;
+					results.push({"product_name":opts2.product_name, "qtyIn":qtyIn, "qtyOut":qtyOut});
+					if(counter==0){
+						res.render('print_stock_reports', results);
+					}
+				});		
+			});
+			
+		});
+		
+	});
+
+});
+
 router.get('/compute/productsin/:product_id/:startDate/:endDate',function(req, res){
 	var opts = {
 		startkey: [req.params.product_id, req.params.startDate],

@@ -5,18 +5,40 @@
 }
 </style>
 <div class="container">
-<div class="row">
-<div class="col-md-5" center-block>
-	<div class="well">
-		<h3>Please Login</h3>
-		<div>
-			<div class="alert alert-error" ng-show="loginError">Username and/or Password Incorrect</div>
-			<form ng-submit="login()">
-				<div class="form-group"><input class="form-control" type='text' ng-model='user.username' placeholder='username'/></div>
-				<div class="form-group"><input class="form-control" type='password' ng-model='user.password' placeholder='password'/></div>
-				<div class="form-group"><input class="btn btn-primary" type="submit" value="Login"></div>
-			</form>
-		</div>
+	<div class="row">
+		<div class="col-md-7" center-block>
+			<div class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Please Login</h3>
+				</div>
+				<div class="panel-body">
+					<div class="well">
+
+						<div>
+							<div class="alert alert-error" ng-show="loginError">Username and/or Password Incorrect</div>
+							<form ng-submit="login()" class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="username" class="control-label col-sm-2">Username</label>
+									<div class="col-sm-10">
+										<input id="username" class="form-control" type='text' ng-model='user.username' placeholder='Username'/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="password" class="control-label col-sm-2">Password</label>
+									<div class="col-sm-10">
+										<input id="password" class="form-control" type='password' ng-model='user.password' placeholder='Password'/>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button class="btn btn-default" type="submit">Login</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div></div>
 	</div>
-</div></div>
-</div>

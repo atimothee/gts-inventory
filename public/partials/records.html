@@ -1,84 +1,83 @@
-<div class="col-md-7">
+<div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">View Records</h3>
     </div>
     <div class="panel-body">
-      <div class="well">
-           <form class="form-inline">
-                    <div class="form-group">
-                        <label>Type</label>
-                        <select ng-model="filter.type">
-                            <option>All</option>
-                            <option>In</option>
-                            <option>Out</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Product</label>
-                        <select ng-model="filter.product_id">
-                            <option value="All">All</option>
-                            <option ng-repeat="p in products" value="{{p._id}}">{{p.product_name}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Customer</label>
-                        <select ng-model="filter.customer_id">
-                            <option value="All">All</option>
-                            <option ng-repeat="c in customers" value="{{c._id}}">{{c.customer_name}}</option>
-                        </select>
-                    </div>
+      <div class="well" ng-show="products.length!=0">
+        <!-- <a href="#" class="btn btn-success pull-left">Add</a> -->
+        <form class="form form-inline" role="form">
+          <div class="form-group input-group-sm">
+            <label for="type">Type</label>
+            <select ng-model="filter.type" class="form-control" id="type">
+              <option selected>All</option>
+              <option>In</option>
+              <option>Out</option>
+              </select>
+            </div>
+            <div class="form-group input-group-sm">
+              <label for="product">Product</label>
+              <select id="product" ng-model="filter.product_id" class="form-control">
+                <option value="All" selected>All</option>
+                <option ng-repeat="p in products" value="{{p._id}}">{{p.product_name}}</option>
+              </select>
+            </div>
+            <div class="form-group input-group-sm">
+              <label for="customer">Customer</label>
+              <select id="customer" ng-model="filter.customer_id" class="form-control">
+                <option selected="selected" value="All">All</option>
+                <option ng-repeat="c in customers" value="{{c._id}}">{{c.customer_name}}</option>
+              </select>
+            </div>
+            <div class="form-group input-group-sm">
+              <label>From</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "filter.startDate" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
 
-                    <div class="form-group">
-                        <label>From</label>
-                        <p class="input-group">
-                            <input ng-model = "filter.startDate" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="openFilterStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                            </span>
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label>To</label>
-                        <p class="input-group">
-                            <input ng-model = "filter.endDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="endOpened" ng-required="true" close-text="Close">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="openFilterEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                            </span>
-                        </p>
-                    </div>
-                    <div class=form-group>
-                        <input type="submit" value="Filter" class="btn btn-primary" ng-click="filterRecords()">
-                    </div>
-                </form>
-      </div>
-     <table id="records_table" ng-table class="table table-bordered">
-       <thead>
-         <th>Date</th>
-         <th>Item Model Number</th>
-         <th>Via</th>
-         <th>Qty</th>
-         <th>Comment</th>
-         <th>Delete</th>
-       </thead>
-       <tbody>
-        <tr ng-repeat = "record in records">
-          <td>{{record.date}}</td>
-          <td>{{record.f_product_model_number}}</td>
-          <td>{{record.f_customer_name}}</td>
-          <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
-          <td>{{record.comment}}</td>
-          <td>
-            <form>
-              <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
-            </form>
-          </td>
-        </tr>
-      </tbody>
+            <div class="input-group input-group-sm">
+              <label>To</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "filter.endDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="endOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+              <button class="btn btn-info" ng-click="filterRecords()">Filter</button>
+          </form>
+        </div>
+        <table id="records_table" ng-table class="table table-bordered">
+         <thead>
+           <th>Date</th>
+           <th>Item Model Number</th>
+           <th>Via</th>
+           <th>Qty</th>
+           <th>Comment</th>
+           <th>Delete</th>
+         </thead>
+         <tbody>
+          <tr ng-repeat = "record in records">
+            <td>{{record.date}}</td>
+            <td>{{record.f_product_model_number}}</td>
+            <td>{{record.f_customer_name}}</td>
+            <td>{{record.quantity}}<span class="badge">{{record.type}}</span></td>
+            <td>{{record.comment}}</td>
+            <td>
+              <form>
+                <input type="submit" value="Delete" class="btn btn-xs btn-danger" ng-click="deleteRecord(record)">
+              </form>
+            </td>
+          </tr>
+        </tbody>
 
-    </table>
+      </table>
+    </div>
   </div>
-</div>
 
 </div>
 <div class="col-md-5" ng-include src="'partials/add_record.html'">
