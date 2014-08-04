@@ -15,6 +15,7 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
 	$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
   $routeProvider.when('/records', {templateUrl: 'partials/records.html', controller: 'RecordsCtrl'});
   $routeProvider.when('/setup', {templateUrl: 'partials/setup.html', controller: 'SetUpCtrl'});
+  $routeProvider.when('/users', {templateUrl: 'partials/users.html', controller: 'UserCtrl'});
   $routeProvider.when('/reports/transactions', {templateUrl: 'partials/transaction_reports.html', controller: 'TransactionReportsCtrl'});
   $routeProvider.when('/reports/stock', {templateUrl: 'partials/stock_reports.html', controller: 'StockReportsCtrl'});
   $routeProvider.otherwise({redirectTo: '/records'});

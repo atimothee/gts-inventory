@@ -28,5 +28,8 @@ angular.module('myApp.services', ['ngResource']).
   .factory('StockService', function($resource) {
     return $resource('/stock/:startDate/:endDate');
 })
+  .factory('User', function($resource) {
+    return $resource('/user');
+})
 
   ;

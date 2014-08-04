@@ -1,11 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db')
+var db = require('../db');
+var users = require('../users');
 var sessions = require('../sessions')
 
 router.get('/', function(req, res) {
 	var username = sessions.getLoggedInUser(req.cookies['AuthSession']);
 	res.render('index', {username: username});
+});
+
+router.post('/user', function(req, res) {
+	users.save(req.body, function(error, docs){
+				console.log('saved '+'err '+JSON.stringify(error)+' docs '+JSON.stringify(docs));
+				res.json(req.body)
+			});
 });
 
 router.get('/print/stock/:startDate/:endDate', function(req, res){

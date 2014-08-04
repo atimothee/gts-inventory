@@ -145,6 +145,20 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) 
 
 }])
 
+.controller('UserCtrl',['$scope','$route','User', function($scope, $route, User) {
+  $scope.users =[];
+  $scope.fuser = {username:'', password:'', type:''};
+  $scope.fuser.type = 'user';
+  $scope.users = User.query();
+  $scope.saveUser = function(){
+    User.save($scope.fuser, function(data){
+      console.log('saved user');
+      $route.reload();
+    });
+  }
+
+}])
+
 .controller('StockReportsCtrl',['$scope','$route', '$location', 'Product', 'ComputeQuantityInService', 'StockService', function($scope, $route, $location, Product, ComputeQuantityInService, StockService) {
  $scope.startDate = new Date();
  $scope.endDate = new Date();
@@ -167,10 +181,6 @@ $scope.openEnd = function($event) {
   $scope.endOpened = true;
 };
 
-
-$scope.print = function(){
-$location.path() = '/newValue';
-}
 
 
 
